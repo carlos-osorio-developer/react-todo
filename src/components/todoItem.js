@@ -1,12 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './todoItem.module.css';
 
 const TodoItem = (props) => {
   const { todo, checkHandler, deleteHandler } = props;
   return (
-    <li>
-      <input type="checkbox" checked={todo.completed} onChange={() => checkHandler(todo.id)} />
-      <input type="submit" value="Delete" onClick={() => deleteHandler(todo.id)} />
+    <li className={styles.item}>
+      <input
+        type="checkbox"
+        className={styles.checkbox}
+        checked={todo.completed}
+        onChange={() => checkHandler(todo.id)}
+      />
+      <input
+        type="submit"
+        className={styles.submit}
+        value="Delete"
+        onClick={() => deleteHandler(todo.id)}
+      />
       <span>{todo.title}</span>
     </li>
   );
