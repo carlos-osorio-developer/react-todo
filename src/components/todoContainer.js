@@ -35,12 +35,22 @@ class TodoContainer extends React.Component {
     this.setState({ todos });
   }
 
+  deleteTodo = (id) => {
+    const { todos } = this.state;    
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    this.setState({ todos: newTodos });
+  }
+
   render() {
     const { todos } = this.state;
     return (
       <div>
         <Header />
-        <TodoList todos={todos} checkHandler={this.checkboxHandler} />
+        <TodoList
+          todos={todos}
+          checkHandler={this.checkboxHandler}
+          deleteHandler={this.deleteTodo}
+        />
       </div>
     );
   }
