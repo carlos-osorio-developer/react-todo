@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './todoList';
 import Header from './header';
+import InputTodo from './inputTodo';
 
 class TodoContainer extends React.Component {
   constructor(props) {
@@ -26,6 +27,8 @@ class TodoContainer extends React.Component {
     };
 
     this.checkboxHandler = this.checkboxHandler.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
+    this.addTodo = this.addTodo.bind(this);
   }
 
   checkboxHandler = (id) => {
@@ -36,9 +39,19 @@ class TodoContainer extends React.Component {
   }
 
   deleteTodo = (id) => {
-    const { todos } = this.state;    
+    const { todos } = this.state;
     const newTodos = todos.filter((todo) => todo.id !== id);
     this.setState({ todos: newTodos });
+  }
+
+  addTodo = (title) => {
+    const { todos } = this.state;
+    const newTodo = {
+      id: todos[todos.length - 1].id + 1,
+      title,
+      completed: false,
+    };
+    this.setState({ todos: [...todos, newTodo] });
   }
 
   render() {
@@ -51,6 +64,7 @@ class TodoContainer extends React.Component {
           checkHandler={this.checkboxHandler}
           deleteHandler={this.deleteTodo}
         />
+        <InputTodo addHandler={this.addTodo} />
       </div>
     );
   }
