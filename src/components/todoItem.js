@@ -4,6 +4,14 @@ import styles from './todoItem.module.css';
 
 const TodoItem = (props) => {
   const { todo, checkHandler, deleteHandler } = props;
+
+  const completedStyle = {
+    fontStyle: 'italic',
+    color: '#595959',
+    opacity: 0.4,
+    textDecoration: 'line-through',
+  };
+
   return (
     <li className={styles.item}>
       <input
@@ -18,7 +26,9 @@ const TodoItem = (props) => {
         value="Delete"
         onClick={() => deleteHandler(todo.id)}
       />
-      <span>{todo.title}</span>
+      <span style={todo.completed ? completedStyle : null}>
+        {todo.title}
+      </span>
     </li>
   );
 };
