@@ -24,6 +24,15 @@ class TodoContainer extends React.Component {
         },
       ],
     };
+
+    this.checkboxHandler = this.checkboxHandler.bind(this);
+  }
+
+  checkboxHandler = (id) => {
+    const { todos } = this.state;
+    const todo = todos.find((todo) => todo.id === id);
+    todo.completed = !todo.completed;
+    this.setState({ todos });
   }
 
   render() {
@@ -31,7 +40,7 @@ class TodoContainer extends React.Component {
     return (
       <div>
         <Header />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} checkHandler={this.checkboxHandler} />
       </div>
     );
   }
