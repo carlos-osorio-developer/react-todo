@@ -21,11 +21,6 @@ const TodoItem = (props) => {
   const todoStyle = todo.editing ? { display: 'none' } : { display: 'block' };
   const editStyle = todo.editing ? { display: 'block' } : { display: 'none' };
 
-  const onChangeEdit = (e) => {
-    const newTitle = e.target.value;
-    onChangeHandler(todo.id, newTitle);
-  };
-
   return (
     <li className={styles.item}>
       <div style={todoStyle} onDoubleClick={() => editHandler(todo.id)}>
@@ -50,7 +45,7 @@ const TodoItem = (props) => {
         className={styles.editInput}
         style={editStyle}
         value={todo.title}
-        onChange={onChangeEdit}
+        onChange={(e) => onChangeHandler(todo.id, e.target.value)}
       />
     </li>
   );
