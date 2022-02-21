@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoList from './todoList';
 import Header from './header';
 import InputTodo from './inputTodo';
 
 const TodoContainer = () => {
   const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    const temp = JSON.parse(localStorage.getItem('todos'));
+    if (temp !== null && temp.length > 0) {
+      setTodos(temp);
+    } else {
+      setTodos([{
+        id: 1,
+        title: 'Add your first task',
+        completed: false,
+        editing: false,
+      }]);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const checkboxHandler = (id) => {
     setTodos(
