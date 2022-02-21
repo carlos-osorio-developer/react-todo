@@ -30,7 +30,8 @@ class TodoContainer extends React.Component {
     const { todos } = this.state;
     const todo = todos.find((todo) => todo.id === id);
     todo.completed = !todo.completed;
-    this.setState({ todos });    
+    this.setState({ todos });
+    localStorage.setItem('todos', JSON.stringify(todos));
   }
 
   deleteTodo = (id) => {
