@@ -7,18 +7,9 @@ class TodoContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    const storageTodos = localStorage.getItem('todos');
     this.state = {
       todos: [],
     };
-
-    if (storageTodos === null || storageTodos === '[]') {
-      this.fetchTodos();
-    } else {
-      this.state = {
-        todos: JSON.parse(storageTodos),
-      };
-    }
 
     this.checkboxHandler = this.checkboxHandler.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
@@ -27,10 +18,33 @@ class TodoContainer extends React.Component {
     this.onChangeEdit = this.onChangeEdit.bind(this);
   }
 
-  fetchTodos = function componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
-      .then((response) => response.json())
-      .then((data) => this.setState({ todos: data }));
+  componentDidMount() {
+    const temp = localStorage.getItem('todos');
+    const loadedTodos = JSON.parse(temp);
+    console.log(loadedTodos);
+    if (loadedTodos && loadedTodos.length) {
+      this.setState({
+        todos: loadedTodos,
+      });
+    } else {
+      this.setState({
+        todos:
+        [{
+          id: 1,
+          title: 'Add your first todo',
+          completed: false,
+          editing: false,
+        }],
+      });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    const { todos } = this.state;
+    if (prevState.todos !== todos) {
+      const temp = JSON.stringify(todos);
+      localStorage.setItem('todos', temp);
+    }
   }
 
   checkboxHandler = (id) => {
@@ -38,14 +52,12 @@ class TodoContainer extends React.Component {
     const todo = todos.find((todo) => todo.id === id);
     todo.completed = !todo.completed;
     this.setState({ todos });
-    localStorage.setItem('todos', JSON.stringify(todos));
   }
 
   deleteTodo = (id) => {
     const { todos } = this.state;
     const newTodos = todos.filter((todo) => todo.id !== id);
     this.setState({ todos: newTodos });
-    localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
   addTodo = (title) => {
@@ -57,7 +69,6 @@ class TodoContainer extends React.Component {
       editing: false,
     };
     this.setState({ todos: [...todos, newTodo] });
-    localStorage.setItem('todos', JSON.stringify([...todos, newTodo]));
   }
 
   editTodo = (id) => {
@@ -65,7 +76,6 @@ class TodoContainer extends React.Component {
     const todo = todos.find((todo) => todo.id === id);
     todo.editing = !todo.editing;
     this.setState({ todos });
-    localStorage.setItem('todos', JSON.stringify(todos));
   }
 
   onChangeEdit = (id, newTitle) => {
