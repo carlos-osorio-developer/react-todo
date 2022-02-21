@@ -27,6 +27,12 @@ class TodoContainer extends React.Component {
     this.onChangeEdit = this.onChangeEdit.bind(this);
   }
 
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }
+
   checkboxHandler = (id) => {
     const { todos } = this.state;
     const todo = todos.find((todo) => todo.id === id);
