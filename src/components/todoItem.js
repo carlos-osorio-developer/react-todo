@@ -8,6 +8,7 @@ const TodoItem = (props) => {
     checkHandler,
     deleteHandler,
     editHandler,
+    onChangeHandler,
   } = props;
 
   const completedStyle = {
@@ -19,6 +20,11 @@ const TodoItem = (props) => {
 
   const todoStyle = todo.editing ? { display: 'none' } : { display: 'block' };
   const editStyle = todo.editing ? { display: 'block' } : { display: 'none' };
+
+  const onChangeEdit = (e) => {
+    const newTitle = e.target.value;
+    onChangeHandler(todo.id, newTitle);
+  };
 
   return (
     <li className={styles.item}>
@@ -39,7 +45,13 @@ const TodoItem = (props) => {
           {todo.title}
         </span>
       </div>
-      <input type="text" className={styles.editInput} style={editStyle} />
+      <input
+        type="text"
+        className={styles.editInput}
+        style={editStyle}
+        value={todo.title}
+        onChange={onChangeEdit}
+      />
     </li>
   );
 };
@@ -54,6 +66,7 @@ TodoItem.propTypes = {
   checkHandler: PropTypes.func.isRequired,
   deleteHandler: PropTypes.func.isRequired,
   editHandler: PropTypes.func.isRequired,
+  onChangeHandler: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

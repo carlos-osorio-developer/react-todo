@@ -4,7 +4,11 @@ import TodoItem from './todoItem';
 
 const TodoList = (props) => {
   const {
-    todos, checkHandler, deleteHandler, editHandler,
+    todos,
+    checkHandler,
+    deleteHandler,
+    editHandler,
+    onChangeHandler,
   } = props;
   return (
     <ul>
@@ -15,6 +19,7 @@ const TodoList = (props) => {
           checkHandler={checkHandler}
           deleteHandler={deleteHandler}
           editHandler={editHandler}
+          onChangeHandler={onChangeHandler}
         />
       ))}
     </ul>
@@ -26,6 +31,7 @@ TodoList.propTypes = {
   checkHandler: PropTypes.func.isRequired,
   deleteHandler: PropTypes.func.isRequired,
   editHandler: PropTypes.func.isRequired,
+  onChangeHandler: PropTypes.func.isRequired,
 };
 
 export default TodoList;
