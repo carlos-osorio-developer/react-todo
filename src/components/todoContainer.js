@@ -62,7 +62,7 @@ class TodoContainer extends React.Component {
   editTodo = (id) => {
     const { todos } = this.state;
     const todo = todos.find((todo) => todo.id === id);
-    todo.editing = true;
+    todo.editing = !todo.editing;
     this.setState({ todos });
   }
 

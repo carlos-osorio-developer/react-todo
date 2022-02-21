@@ -46,6 +46,11 @@ const TodoItem = (props) => {
         style={editStyle}
         value={todo.title}
         onChange={(e) => onChangeHandler(todo.id, e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            editHandler(todo.id);
+          }
+        }}
       />
     </li>
   );
