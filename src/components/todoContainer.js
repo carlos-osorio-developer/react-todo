@@ -10,20 +10,21 @@ class TodoContainer extends React.Component {
       id: 1,
       title: 'Add your first todo',
       completed: false,
+      editing: false,
     };
 
     const storageTodos = localStorage.getItem('todos');
+    const checker = storageTodos === null || storageTodos === '[]';
 
     this.state = {
-      todos: storageTodos ? JSON.parse(storageTodos) : [initialTodo],
+      todos: checker ? [initialTodo] : JSON.parse(storageTodos),
     };
 
     this.checkboxHandler = this.checkboxHandler.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.editTodo = this.editTodo.bind(this);
-    this.onChangeEdit = this.onChangeEdit.bind(this);
-    console.log(this.state);
+    this.onChangeEdit = this.onChangeEdit.bind(this);    
   }
 
   checkboxHandler = (id) => {
@@ -38,6 +39,7 @@ class TodoContainer extends React.Component {
     const { todos } = this.state;
     const newTodos = todos.filter((todo) => todo.id !== id);
     this.setState({ todos: newTodos });
+    localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
   addTodo = (title) => {
@@ -46,6 +48,7 @@ class TodoContainer extends React.Component {
       id: todos[todos.length - 1].id + 1,
       title,
       completed: false,
+      editing: false,
     };
     this.setState({ todos: [...todos, newTodo] });
     localStorage.setItem('todos', JSON.stringify([...todos, newTodo]));
