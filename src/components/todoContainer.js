@@ -6,19 +6,19 @@ import InputTodo from './inputTodo';
 class TodoContainer extends React.Component {
   constructor(props) {
     super(props);
-    const initialTodo = {
-      id: 1,
-      title: 'Add your first todo',
-      completed: false,
-      editing: false,
-    };
 
     const storageTodos = localStorage.getItem('todos');
-    const checker = storageTodos === null || storageTodos === '[]';
-
     this.state = {
-      todos: checker ? [initialTodo] : JSON.parse(storageTodos),
+      todos: [],
     };
+
+    if (storageTodos === null || storageTodos === '[]') {
+      this.fetchTodos();
+    } else {
+      this.state = {
+        todos: JSON.parse(storageTodos),
+      };
+    }
 
     this.checkboxHandler = this.checkboxHandler.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
@@ -27,10 +27,10 @@ class TodoContainer extends React.Component {
     this.onChangeEdit = this.onChangeEdit.bind(this);
   }
 
-  componentDidMount() {
+  fetchTodos = function componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => this.setState({ todos: data }));
   }
 
   checkboxHandler = (id) => {
@@ -51,7 +51,7 @@ class TodoContainer extends React.Component {
   addTodo = (title) => {
     const { todos } = this.state;
     const newTodo = {
-      id: todos[todos.length - 1].id + 1,
+      id: todos.length ? todos[todos.length - 1].id + 1 : 1,
       title,
       completed: false,
       editing: false,
