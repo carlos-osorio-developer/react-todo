@@ -15,7 +15,7 @@ const TodoList = (props) => {
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
-          todo={todo}
+          todo={{ ...todo, editing: false }}
           checkHandler={checkHandler}
           deleteHandler={deleteHandler}
           editHandler={editHandler}

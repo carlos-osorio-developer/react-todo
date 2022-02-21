@@ -6,27 +6,16 @@ import InputTodo from './inputTodo';
 class TodoContainer extends React.Component {
   constructor(props) {
     super(props);
+    const initialTodo = {
+      id: 1,
+      title: 'Add your first todo',
+      completed: false,
+    };
+
+    const storageTodos = localStorage.getItem('todos');
+
     this.state = {
-      todos: [
-        {
-          id: 1,
-          title: 'Learn React',
-          completed: false,
-          editing: false,
-        },
-        {
-          id: 2,
-          title: 'Learn Redux',
-          completed: false,
-          editing: false,
-        },
-        {
-          id: 3,
-          title: 'Learn React-Redux',
-          completed: false,
-          editing: false,
-        },
-      ],
+      todos: storageTodos ? JSON.parse(storageTodos) : [initialTodo],
     };
 
     this.checkboxHandler = this.checkboxHandler.bind(this);
@@ -34,13 +23,14 @@ class TodoContainer extends React.Component {
     this.addTodo = this.addTodo.bind(this);
     this.editTodo = this.editTodo.bind(this);
     this.onChangeEdit = this.onChangeEdit.bind(this);
+    console.log(this.state);
   }
 
   checkboxHandler = (id) => {
     const { todos } = this.state;
     const todo = todos.find((todo) => todo.id === id);
     todo.completed = !todo.completed;
-    this.setState({ todos });
+    this.setState({ todos });    
   }
 
   deleteTodo = (id) => {
@@ -57,6 +47,7 @@ class TodoContainer extends React.Component {
       completed: false,
     };
     this.setState({ todos: [...todos, newTodo] });
+    localStorage.setItem('todos', JSON.stringify([...todos, newTodo]));
   }
 
   editTodo = (id) => {
