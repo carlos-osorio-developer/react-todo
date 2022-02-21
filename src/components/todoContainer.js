@@ -24,7 +24,7 @@ class TodoContainer extends React.Component {
     this.deleteTodo = this.deleteTodo.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.editTodo = this.editTodo.bind(this);
-    this.onChangeEdit = this.onChangeEdit.bind(this);    
+    this.onChangeEdit = this.onChangeEdit.bind(this);
   }
 
   checkboxHandler = (id) => {
@@ -59,6 +59,7 @@ class TodoContainer extends React.Component {
     const todo = todos.find((todo) => todo.id === id);
     todo.editing = !todo.editing;
     this.setState({ todos });
+    localStorage.setItem('todos', JSON.stringify(todos));
   }
 
   onChangeEdit = (id, newTitle) => {
