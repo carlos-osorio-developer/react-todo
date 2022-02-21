@@ -12,16 +12,19 @@ class TodoContainer extends React.Component {
           id: 1,
           title: 'Learn React',
           completed: false,
+          editing: false,
         },
         {
           id: 2,
           title: 'Learn Redux',
           completed: false,
+          editing: false,
         },
         {
           id: 3,
           title: 'Learn React-Redux',
           completed: false,
+          editing: false,
         },
       ],
     };
@@ -29,6 +32,7 @@ class TodoContainer extends React.Component {
     this.checkboxHandler = this.checkboxHandler.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
     this.addTodo = this.addTodo.bind(this);
+    this.editTodo = this.editTodo.bind(this);
   }
 
   checkboxHandler = (id) => {
@@ -54,6 +58,13 @@ class TodoContainer extends React.Component {
     this.setState({ todos: [...todos, newTodo] });
   }
 
+  editTodo = (id) => {
+    const { todos } = this.state;
+    const todo = todos.find((todo) => todo.id === id);
+    todo.editing = true;
+    this.setState({ todos });
+  }
+
   render() {
     const { todos } = this.state;
     return (
@@ -64,6 +75,7 @@ class TodoContainer extends React.Component {
             todos={todos}
             checkHandler={this.checkboxHandler}
             deleteHandler={this.deleteTodo}
+            editHandler={this.editTodo}
           />
           <InputTodo addHandler={this.addTodo} />
         </div>
