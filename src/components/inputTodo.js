@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaPlusCircle } from 'react-icons/fa';
 
 const InputTodo = (props) => {
   const { addHandler } = props;
@@ -12,7 +13,9 @@ const InputTodo = (props) => {
       }}
     >
       <input type="text" placeholder="Add Todo..." className="input-text" />
-      <input type="submit" value="Submit" className="input-submit" />
+      <button type="submit" className="input-submit">
+        <FaPlusCircle />
+      </button>
     </form>
   );
 };
