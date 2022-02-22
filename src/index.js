@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import TodoContainer from './components/todoContainer';
 import './App.css';
 
-ReactDOM.render(<TodoContainer />, document.getElementById('root'));
+ReactDOM.render(
+  <BrowserRouter>
+    <TodoContainer />
+  </BrowserRouter>,
+  document.getElementById('root'),
+);
