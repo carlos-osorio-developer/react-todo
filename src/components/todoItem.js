@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaTrash } from 'react-icons/fa';
 import styles from './todoItem.module.css';
 
 const TodoItem = (props) => {
@@ -30,12 +31,14 @@ const TodoItem = (props) => {
           checked={todo.completed}
           onChange={() => checkHandler(todo.id)}
         />
-        <input
+        <button
           type="submit"
           className={styles.submit}
           value="Delete"
           onClick={() => deleteHandler(todo.id)}
-        />
+        >
+          <FaTrash />
+        </button>
         <span style={todo.completed ? completedStyle : null}>
           {todo.title}
         </span>
