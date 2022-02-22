@@ -37,7 +37,7 @@ const TodoItem = (props) => {
           value="Delete"
           onClick={() => deleteHandler(todo.id)}
         >
-          <FaTrash />
+          <FaTrash style={{ color: 'orangered', fontSize: '16px' }} />
         </button>
         <span style={todo.completed ? completedStyle : null}>
           {todo.title}
