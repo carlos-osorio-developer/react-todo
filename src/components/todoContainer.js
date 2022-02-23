@@ -87,9 +87,8 @@ const TodoContainer = () => {
   };
 
   return (
-    <>
-      <Navbar />
-      <Routes>
+    <Routes>
+      <Route element={<Navbar />}>
         <Route
           exact
           path="/"
@@ -111,8 +110,8 @@ const TodoContainer = () => {
         />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotMatch />} />
-      </Routes>
-    </>
+      </Route>
+    </Routes>
   );
 };
 
