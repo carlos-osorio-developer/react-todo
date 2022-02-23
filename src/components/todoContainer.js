@@ -6,6 +6,7 @@ import Navbar from './navbar';
 import InputTodo from './inputTodo';
 import About from '../pages/about';
 import NotMatch from '../pages/noMatch';
+import SinglePage from '../pages/singlePage';
 
 const TodoContainer = () => {
   const [todos, setTodos] = useState([]);
@@ -108,7 +109,9 @@ const TodoContainer = () => {
             </div>
           )}
         />
-        <Route path="/about" element={<About />} />
+        <Route path="about" element={<About />}>
+          <Route path=":slug" element={<SinglePage />} />
+        </Route>
         <Route path="*" element={<NotMatch />} />
       </Route>
     </Routes>
