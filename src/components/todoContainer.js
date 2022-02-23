@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import TodoList from './todoList';
 import Header from './header';
+import Navbar from './navbar';
 import InputTodo from './inputTodo';
 import About from '../pages/about';
 import NotMatch from '../pages/noMatch';
@@ -86,29 +87,32 @@ const TodoContainer = () => {
   };
 
   return (
-    <Routes>
-      <Route
-        exact
-        path="/"
-        element={(
-          <div className="container">
-            <div className="inner">
-              <Header />
-              <TodoList
-                todos={todos}
-                checkHandler={checkboxHandler}
-                deleteHandler={deleteTodo}
-                editHandler={editTodo}
-                onChangeHandler={onChangeEdit}
-              />
-              <InputTodo addHandler={addTodo} />
+    <>
+      <Navbar />
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={(
+            <div className="container">
+              <div className="inner">
+                <Header />
+                <TodoList
+                  todos={todos}
+                  checkHandler={checkboxHandler}
+                  deleteHandler={deleteTodo}
+                  editHandler={editTodo}
+                  onChangeHandler={onChangeEdit}
+                />
+                <InputTodo addHandler={addTodo} />
+              </div>
             </div>
-          </div>
-        )}
-      />
-      <Route path="/about" element={<About />} />
-      <Route path="*" element={<NotMatch />} />
-    </Routes>
+          )}
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotMatch />} />
+      </Routes>
+    </>
   );
 };
 
