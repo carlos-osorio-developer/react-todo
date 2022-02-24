@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "//carlos-osorio-developer.github.io/react-todo/static/css/main.42ee3085.css",
-    "main.js": "//carlos-osorio-developer.github.io/react-todo/static/js/main.661e0918.js",
+    "main.js": "//carlos-osorio-developer.github.io/react-todo/static/js/main.42c92fe3.js",
     "index.html": "//carlos-osorio-developer.github.io/react-todo/index.html",
     "main.42ee3085.css.map": "//carlos-osorio-developer.github.io/react-todo/static/css/main.42ee3085.css.map",
-    "main.661e0918.js.map": "//carlos-osorio-developer.github.io/react-todo/static/js/main.661e0918.js.map"
+    "main.42c92fe3.js.map": "//carlos-osorio-developer.github.io/react-todo/static/js/main.42c92fe3.js.map"
   },
   "entrypoints": [
     "static/css/main.42ee3085.css",
-    "static/js/main.661e0918.js"
+    "static/js/main.42c92fe3.js"
   ]
 }
