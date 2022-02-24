@@ -1,7 +1,14 @@
-# MathLovers
+# React TODO-List
 
-This a simple TODO list app created with React.
+This a simple TODO list app created with React. It allows you to add, edit, and delete tasks.
 
+It also has 'about' and '404-error' pages, using nested React router.
+
+The TODO items are stored in the localStorage of the browser, using JSON format.
+
+## Live Demo
+
+[React TODO-List](https://carlos-osorio-developer.github.io/react-todo/)
 
 ## Built With
 
@@ -41,16 +48,8 @@ To get a local copy up and running follow these simple example steps.
 - Run the following command to install dependencies:
 `npm install`
 
-- Run the following command to compile the files for production:
-`npm run build`
-
-- Use the following command to run the tests:
-`npm run test`
-
-
-### Usage
-
-Run dist/index.html in your preferred browser.
+- Run the following command to run the local server:
+`npm start`
 
 
 ## Author
