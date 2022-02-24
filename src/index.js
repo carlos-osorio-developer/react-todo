@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter as Router } from "react-router-dom"
 import TodoContainer from './components/todoContainer';
 import './App.css';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <Router>
     <TodoContainer />
-  </BrowserRouter>,
+  </Router>,
   document.getElementById('root'),
 );
