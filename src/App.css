@@ -84,13 +84,13 @@ body {
   left: 40px;
   top: 40px;
   z-index: 10;
-  cursor: pointer;  
-  background: #2196F3;
+  cursor: pointer;
+  background: #2196f3;
   color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 50px;
-  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.38);  
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.38);
 }
 
 .menuNav {
@@ -123,4 +123,40 @@ a {
 
 .menuNav li:first-child {
   margin-top: 7rem;
+}
+
+.about__content {
+  padding: 8rem 40px;
+  display: flex;
+}
+
+.about__list {
+  list-style: none;
+  flex: 2;
+  margin-right: 15px;
+}
+
+.about__list a {
+  color: #9f9f9f;
+  text-transform: capitalize;
+  padding: 20px 0;
+  font-weight: 600;
+}
+
+.about__list a:hover {
+  color: #000;
+}
+
+.main__content {
+  flex: 7;
+}
+
+.main__content h1 {
+  margin-bottom: 15px;
+  line-height: 30px;
+  font-size: 30px;
+}
+
+.main__content p {
+  line-height: 25px;
 }
